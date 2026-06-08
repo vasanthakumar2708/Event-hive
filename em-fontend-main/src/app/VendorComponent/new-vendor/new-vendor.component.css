@@ -1,0 +1,33 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.btn{
+    @apply border-2 pt-1 pb-1 pl-4 pr-4 rounded-full font-semibold hover:bg-[#27debf];
+}
+
+.inputbox{
+    @apply bg-[#a9f2e5] rounded-md pl-5 border-2 border-[#27debf] ;
+}
+
+input{
+    width: 250px;
+}
+
+.visible {
+    display: block; 
+  }
+  
+  .invisible {
+    display: none;
+  }
+
+  .p-inputtext{
+    background-color: #beeaff;
+  }
+
+  label {
+    width: 150px;
+    border: 2px;
+  }
+

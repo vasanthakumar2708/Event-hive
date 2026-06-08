@@ -1,0 +1,88 @@
+<fieldset class="h-fit w-full border-2 p-5 flex flex-col space-y-2 rounded-md">
+  <legend class=" px-2 border-2 rounded-lg font-semibold text-[#9ca3af] ">Vendor details</legend>
+
+<p-stepper>
+    <p-stepperPanel header="Food">
+      <ng-template pTemplate="content" let-prevCallback="prevCallback" let-nextCallback="nextCallback"
+        let-index="index">
+        <div class="flex flex-column ">
+          <div 
+            class="content ">
+            <div *ngFor="let card of veunecards">
+              <app-vendor-card name="{{card.vendor_cname}}" address="{{card.vendor_location}}" type="{{card.vendor_service}}" id ="{{card._id}}" (dataEmitter)="handleVendorAdded($event)"></app-vendor-card>
+            </div>
+
+          </div>
+        </div>
+        <div class="flex pt-4 flex-row justify-between">
+          <button type="button" class="button1" icon="pi pi-arrow-right" (click)="prevCallback.emit()">
+            <i class="ph ph-arrow-left"></i>Back
+          </button>
+          <button type="button" class="button1" icon="pi pi-arrow-right" (click)="nextCallback.emit()">
+            Next <i class="ph ph-arrow-right"></i>
+          </button>
+        </div>
+      </ng-template>
+    </p-stepperPanel>
+    <p-stepperPanel header="Entertainment">
+      <ng-template pTemplate="content" let-prevCallback="prevCallback" let-nextCallback="nextCallback"
+        let-index="index">
+        <div class="flex flex-column h-12rem">
+          <div
+            class="content ">
+            <div *ngFor="let card of catercards">
+              <app-vendor-card name="{{card.vendor_cname}}" address="{{card.vendor_location}}" type="{{card.vendor_service}}" id ="{{card._id}}" (dataEmitter)="handleVendorAdded($event)"></app-vendor-card>
+            </div>
+          </div>
+        </div>
+        <div class="flex pt-4 flex-row justify-between">
+          <button type="button" class="button1" icon="pi pi-arrow-right" (click)="prevCallback.emit()">
+            <i class="ph ph-arrow-left"></i>Back
+          </button>
+          <button type="button" class="button1" icon="pi pi-arrow-right" (click)="nextCallback.emit()">
+            Next <i class="ph ph-arrow-right"></i>
+          </button>
+        </div>
+      </ng-template>
+    </p-stepperPanel>
+    <p-stepperPanel header="Decoration">
+      <ng-template pTemplate="content" let-prevCallback="prevCallback" let-nextCallback="nextCallback"
+        let-index="index">
+        <div class="flex flex-column ">
+          <div
+            class="content">
+            <div *ngFor="let card of decorcards">
+              <app-vendor-card name="{{card.vendor_cname}}" address="{{card.vendor_location}}" type="{{card.vendor_service}} " id ="{{card._id}}"  (dataEmitter)="handleVendorAdded($event)"></app-vendor-card>
+            </div>
+          </div>
+        </div>
+        <div class="flex pt-4 flex-row justify-between">
+          <button type="button" class="button1" icon="pi pi-arrow-right" (click)="prevCallback.emit()">
+            <i class="ph ph-arrow-left"></i>Back
+          </button>
+          <button type="button" class="button1" icon="pi pi-arrow-right" (click)="nextCallback.emit()">
+            Next <i class="ph ph-arrow-right"></i>
+          </button>
+        </div>
+      </ng-template>
+    </p-stepperPanel>
+    <p-stepperPanel header="Venue">
+      <ng-template pTemplate="content" let-prevCallback="prevCallback" let-index="index">
+        <div class="flex flex-column h-12rem">
+          <div
+            class="content ">
+            <div *ngFor="let card of Entercards">
+              <app-vendor-card name="{{card.vendor_cname}}" address="{{card.vendor_location}}" type="{{card.vendor_service}}" id ="{{card._id}}" (dataEmitter)="handleVendorAdded($event)"></app-vendor-card>
+            </div>
+          </div>
+        </div>
+        <div class="flex pt-4 flex-row justify-between">
+          <button type="button" class="button1" icon="pi pi-arrow-right" (click)="prevCallback.emit()">
+            <i class="ph ph-arrow-left"></i>Back
+          </button>
+        
+        </div>
+      </ng-template>
+    </p-stepperPanel>
+  </p-stepper>
+</fieldset>

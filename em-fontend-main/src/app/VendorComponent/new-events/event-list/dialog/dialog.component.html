@@ -1,0 +1,293 @@
+
+<div class="h-fit space-y-2 relative">
+
+    <div *ngIf="loading" class=""><img src="../../../../../assets/loading.svg" class="size-32 absolute left-[42%] top-[12rem]" alt="" srcset=""></div>
+
+    <div class="w-full h-fit p-4 greenborder flex flex-row bg-green-50">
+        <div class="w-3/4 flex flex-col space-y-3">
+            <div class="flex w-full justify-start space-x-6">
+                <span class="flex items-center justify-center text-xl font-semibold"><img src="../../../../../assets/vendor/userprofile.svg" alt="" class ="pr-2"> {{eventdata.event.name}}</span>
+                <span *ngIf="eventdata.eventStatus=='quatationsubmitted'" class="border-2 border-yellow-400  flex items-center justify-center bg-yellow-100 pr-2 pl-2 p-1 rounded-md"><img src="../../../../../assets/vendor/pending.svg" alt="" class ="pr-2" srcset="">PENDING</span>
+                <span *ngIf="eventdata.eventStatus=='quatationPending'" class="border-2 border-yellow-400  flex items-center justify-center bg-yellow-100 pr-2 pl-2 p-1 rounded-md"><img src="../../../../../assets/vendor/pending.svg" alt="" class ="pr-2" srcset="">PENDING</span>
+                <span *ngIf="eventdata.eventStatus=='quotationRejected'"  class="border-2 border-red-400  flex items-center justify-center bg-red-100 pr-2 pl-2 p-1 rounded-md"><img src="../../../../../assets/vendor/wrong.svg" alt="" class ="pr-2" srcset="">  REJECTED</span>
+                <span *ngIf="eventdata.eventStatus == 'quotationAccepted' " class="border-2 border-green-400  flex items-center justify-center bg-green-100 pr-2 pl-2 p-1 rounded-md"><img src="../../../../../assets/vendor/complete.svg" alt="" class ="pr-2" srcset="">ACCECTED</span>
+            </div>
+            <div class="flex w-full justify-start space-x-6">
+                <span class="flex items-center justify-center "><img src="../../../../../assets/vendor/calender.svg" alt="" class ="pr-2" srcset="">  {{eventdata.event.doe}}</span>
+                <span class="flex items-center justify-center "><img src="../../../../../assets/vendor/phoneicon.svg" alt="" class ="pr-2" srcset="">  {{eventdata.event.phone}}</span>
+                <span class="flex items-center justify-center "><img src="../../../../../assets/vendor/locationicon.svg" alt="" class ="pr-2" srcset="">  {{eventdata.event.LocOfEvent}}</span>
+            </div>
+        </div>
+        <div class="w-1/4 flex items-center justify-center">
+            <button class="callbtn">CALL CLIENT</button>
+        </div>
+    </div>
+
+   
+    <!-- ********************************************************************** -->
+    <!-- ********************************************************************** -->
+    <!-- **** USE quatation status flag to show and hide the quqtion atabel *** -->
+    <!-- ********************************************************************** -->
+    <!-- ********************************************************************** -->
+
+    <div *ngIf="eventdata.eventStatus == 'quatationPending' " class="w-full h-[30rem] p-4 greenborder flex flex-row bg-green-50 overflow-scroll space-x-4">
+        <!-- Set the container to have overflow hidden -->
+        <p-table 
+            [value]="requirement" 
+            class="" 
+            [tableStyle]="{ 'width': '50rem'}" 
+            [scrollable]="true" 
+            scrollHeight="100%"
+        >
+            <ng-template pTemplate="header">
+                <tr>  
+                    <th>S No</th>
+                    <th>Name</th>
+                    <th>Quantity</th>
+                    <th>Edit</th>
+                </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-food let-rowIndex="rowIndex">
+                <tr>
+                    <td>{{ rowIndex + 1 }}</td>
+                    <td>{{ food.Item }}</td>
+                    <td>{{ food.Quantity }}</td>
+                    <td><input type="text" class="input-field" [id]="rowIndex" [(ngModel)]="requirement[rowIndex].amount"  (ngModelChange)="calculateTotal()"></td>
+                    </tr>
+            </ng-template>
+        </p-table>
+      
+        <div class="rounded-md bg-yellow-100 border border-yellow-400 h-56 flex w-1/2 flex-col items-center justify-evenly ">
+            <span class="text-xl font-bold">Quatation Summary</span>
+            <div class="w-full h-fit pl-28 flex flex-col space-y-4">
+                
+                <span class="font-bold">Total Items : {{requirementTablelength}}</span>
+                <span class="font-bold">Total amount : {{totalAmount}}</span>
+            </div>
+            <button class="bg-green-500 rounded-md p-1 w-1/2 pl-5 h-fit pr-5 font-bold text-white" (click)="giveQuatation()">submit quatation</button> 
+           
+        </div>
+  
+  
+    </div>
+    
+    
+
+    <!-- <div *ngIf="eventdata.eventStatus == 'quatationPending' " class="   w-full h-24 border-2 border-yellow-400 justify-center items-center p-4 rounded-md flex flex-row bg-[#fef9c3]">
+        <span class="text-2xl font-bold text-yellow-500"> Quatation in waiting List </span>
+    </div> -->
+
+    <div *ngIf="eventdata.eventStatus == 'quatationsubmitted' " class="   w-full h-24 border-2 border-yellow-400 justify-center items-center p-4 rounded-md flex flex-row bg-[#fef9c3]">
+        <span class="text-2xl font-bold text-yellow-500"> Quatation in waiting List </span>
+    </div>
+
+    <div *ngIf="eventdata.eventStatus == 'quotationRejected' " class="   w-full h-24 border-2 border-red-400 justify-center items-center p-4 rounded-md flex flex-row bg-red-100">
+        <span class="text-2xl font-bold text-red-500"> Quatation not selected </span>
+    </div>
+
+    <div *ngIf="eventdata.eventStatus == 'quotationAccepted' " class="   w-full min-h-[30rem] h-fit border-2 border-green-400 justify-center  p-4 rounded-md flex flex-row bg-red-100 ">
+      <div class="w-full h-fit">
+
+        <div class="w-full h-fit flex space-x-2">
+
+            <!-- <div class=" h-fit flex flex-col w-1/4 border-2 rounded-md  bg-green-50 pl-8 p-4 items-center space-y-3">
+                <span class="w-full flex justify-center ">Update Payment </span>
+                <div class="w-full items-start">
+                <label class="flex space-x-2 items-center justify-between w-1/3">
+                    <img class="size-5" src="../../../../../assets/payment/upi.svg" alt=""> UPI
+                    <input type="radio" name="pay" value="upi" [(ngModel)]="selectedOption" >
+                  </label>
+                  
+                  <label class="flex space-x-2 items-center justify-between w-1/3">
+                    <img class="size-5" src="../../../../../assets/payment/card.svg" alt="">Card
+                      <input type="radio" name="pay" value="card" [(ngModel)]="selectedOption" >
+                  </label>
+                  
+                  <label class="flex space-x-2 items-center justify-between w-1/3">
+                     <img class="size-5" src="../../../../../assets/payment/cash.svg" alt=""> Cash
+                      <input type="radio" name="pay" value="cash" [(ngModel)]="selectedOption" >
+                  </label>
+                </div>
+                <div class="w-full flex justify-evenly items-center"><label for="">Amount </label><input [(ngModel)]="paidamount" class="border bg-green-100 border-emerald-500 rounded-lg pl-1 " type="text" value=""></div>
+               <button class="rounded-lg bg-green-600 w-3/4 text-white p-1 font-bold " (click)="billpaybtn()" >submit</button> 
+            </div>
+     -->
+            <!-- <div class="w-1/4 flex flex-col flex-grow border rounded-md bg-green-50">
+                <div class="flex flex-col w-full h-10 items-center justify-center">Bill Details</div>
+                <span class="font-bold " >Total Amount :  {{eventdata.billamount}}</span>
+                <span class="font-bold " >Total Amount Paid :  {{totalAmount}}</span>
+            </div> -->
+
+            <div class=" flex flex-col h-hit w-full  rounded-md space-y-2 "  >   
+                <div class="w-full h-20 bg-green-50 rounded-md flex flex-row items-center justify-evenly">
+
+                    <span class="font-bold " >Total Amount :  {{eventdata.billamount}}</span>
+                    <span class="font-bold " >Total Amount Paid :  {{totalAmount}}</span>
+                    
+                    <button class="font-bold rounded-md bg-blue-300 text-blue-700 p-1 pl-2 pr-2" (click)="table = 'req'" >Requirement Table </button>
+                    <button class="font-bold rounded-md bg-blue-300 text-blue-700 p-1 pl-2 pr-2" (click)="table = 'pay'">Payment Table</button>
+
+                </div>
+                
+              <div *ngIf="table == 'req' ">  <app-reqtable [reqtable]="eventdata.requirementTable"></app-reqtable></div>
+             <div *ngIf="table == 'pay' ">   <app-table [vendata]="eventdata" [paymentable]="eventdata.PaymentTable"></app-table></div>
+            </div>
+          
+        </div>  
+        
+
+      </div>
+    </div>
+
+    <div>
+        
+    </div>
+   
+
+
+
+    <!-- PHASE 1 - 2 -->
+
+    <!-- <div class="w-full h-fit flex  space-x-2 ">
+    <div class="w-1/2 h-40 greenborder flex justify-evenly items-center bg-green-50 ">
+        <div *ngIf="eventdata.status[0]" class="w-full h-full flex items-center justify-center">
+            <div class="h-3/4 w-3/4 flex items-center justify-center font-bold text-xl">ORDER ACCECTED</div>
+        </div>
+        <div *ngIf="!eventdata.status[0]" class="w-full h-full flex items-center justify-center">
+            <span>Do you accepet this order</span>
+            <button type="button" (click)="updateStatus(0,true)" ><img src="../../../../../assets/complete.svg" alt="" srcset=""></button>
+            <button type="button" (click)="updateStatus(0,false)"  ><img src="../../../../../assets/reject.svg" alt="" srcset=""></button>
+        </div>
+    </div>
+    <div class="w-1/2 h-fit greenborder flex items-center justify-center space-y-2" [ngClass] = " eventdata.status[0] ? 'bg-green-50' : 'bg-[#fef9c3]' ">
+        <div *ngIf="!eventdata.status[0]" class="w-full h-full flex items-center justify-center"><img src="../../../../../assets/lock.svg" alt="" srcset=""></div>
+        <div *ngIf="eventdata.status[0] " class="w-full h-60 flex flex-col items-center justify-center space-y-2">
+            <span class="font-bold">Upload Requrment File and Bill (PDF)</span>
+            <input type="file" (change)="onFileSelected($event)" />
+            
+            <div class="w-full flex justify-between pl-4 pr-4"><span>Final Bill </span><input type="text" class=  "pl-1 billinput"   placeholder="( enter amount in rs )"  [(ngModel)]="bill_amount"></div>
+            <div class="w-full flex justify-between pl-4 pr-4"><span>Advance Bill </span><input type="text" class="pl-1 billinput" placeholder="( enter amount in rs )"   [(ngModel)]="advance_bill_amount"></div>
+            <div class="w-full flex justify-end pr-4 pb-2"><button type="button" class="border rounded-md p-1 bg-red-500 text-white" (click)="onUpload()">Upload file</button></div>
+        </div>
+        <div *ngIf="eventdata.status[1]" class="w-full h-40 flex flex-col items-center justify-center space-y-4">
+            <div class=" w-full flex items-center justify-center font-bold text-xl">REQUREMNT AND BILL FINALISED</div>
+            <div class=" w-3/4  pl-4   flex items-center justify-start font-bold ">Bill Amount : <span class="flex space-x-2"> {{eventdata.billamount}} <img src="../../../../../assets/money.svg" class="size-5" alt=""></span></div>
+            <div class=" w-3/4  pl-4  flex items-center justify-start font-bold ">Bill Advance Amount  : <span class="flex space-x-2"> {{eventdata.billamount_advance}}   <img src="../../../../../assets/money.svg" class="size-5" alt=""> </span></div>
+        </div>
+    </div>
+    </div>
+
+
+    <div class="w-full h-24 flex  space-x-2 justify-center">
+    
+    <div class="w-1/2 h-full greenborder " [ngClass] = " eventdata.status[1] ? 'bg-green-50' : 'bg-[#fef9c3]' ">
+
+        <div *ngIf="!eventdata.status[1] "   class="w-full h-full flex items-center justify-center"><img src="../../../../../assets/lock.svg" alt="" srcset=""></div>
+        <div *ngIf="eventdata.status[1] "   class="w-full h-full flex flex-col items-center justify-evenly">
+              
+                <div class="w-fit flex flex-col"><label class="font-semibold flex">Total Amount Paid : {{eventdata.billpaid}} <img src="../../../../../assets/money.svg" class="size-5" alt=""></label>
+                <label class="font-semibold flex">Total Amount Pending : {{ eventdata.billamount -  eventdata.billpaid}} <img src="../../../../../assets/money.svg" class="size-5" alt=""> </label></div>
+                <progress class="  " value="{{eventdata.billpaid}}" max="{{ eventdata.billamount -  eventdata.billpaid}}" ></progress>
+        </div>
+        
+    </div>
+    
+    <div class="greenborder w-1/2 h-full  " [ngClass] = " eventdata.status[2] ? 'bg-green-50' : 'bg-[#fef9c3]' ">
+        <div *ngIf="!eventdata.status[2]"   class="w-full h-full flex items-center justify-center"><img src="../../../../../assets/lock.svg" alt="" srcset=""></div>
+        <div *ngIf="eventdata.status[2]"    class="w-full h-full flex flex-col items-center justify-evenly">
+                <div class="w-fit flex flex-col"><label class="font-semibold flex">Total Advance Paid : {{eventdata.billpaid}} <img src="../../../../../assets/money.svg" class="size-5" alt=""></label>
+                <label class="font-semibold flex">Total Advance Pending : {{ eventdata.billamount_advance -  eventdata.billpaid}} <img src="../../../../../assets/money.svg" class="size-5" alt=""> </label></div>
+                <progress class="   " value="{{eventdata.billpaid}}" max="{{ eventdata.billamount_advance -  eventdata.billpaid}}" ></progress>
+        </div>
+    </div>
+    </div>
+
+    
+
+    <div class="w-full h-fit flex space-x-2">
+        <div class=" h-fit flex flex-col w-1/2 border-2 rounded-md  bg-green-50 pl-8 p-4 items-center space-y-3">
+            <span class="w-full flex justify-center ">Update Payment </span>
+            <div class="w-full items-start">
+            <label class="flex space-x-2 items-center justify-between w-1/3">
+                <img class="size-5" src="../../../../../assets/payment/upi.svg" alt=""> UPI
+                <input type="radio" name="pay" value="upi" [(ngModel)]="selectedOption" >
+              </label>
+              
+              <label class="flex space-x-2 items-center justify-between w-1/3">
+                <img class="size-5" src="../../../../../assets/payment/card.svg" alt="">Card
+                  <input type="radio" name="pay" value="card" [(ngModel)]="selectedOption" >
+              </label>
+              
+              <label class="flex space-x-2 items-center justify-between w-1/3">
+                 <img class="size-5" src="../../../../../assets/payment/cash.svg" alt=""> Cash
+                  <input type="radio" name="pay" value="cash" [(ngModel)]="selectedOption" >
+              </label>
+            </div>
+            <div class="w-full flex justify-start space-x-10"><label for="">Amount</label><input [(ngModel)]="paidamount" class="border bg-green-100 border-emerald-500 rounded-lg pl-1 " type="text" value=""></div>
+           <button class="rounded-lg bg-green-600 w-3/4 text-white p-1 font-bold " (click)="billpaybtn()" >submit</button> 
+        </div>
+
+        <div class=" flex flex-grow w-1/2 border-2 rounded-md" [ngClass] = " eventdata.status[6] ? 'bg-green-50' : 'bg-[#fef9c3]' " >
+            <div *ngIf="!eventdata.status[6]" class="h-full w-full flex items-center justify-center"><img src="../../../../../assets/lock.svg" alt="" srcset=""> </div>
+        </div>
+    </div>
+
+
+    <div class="main flex flex-col border-2 rounded-md h-96 bg-[#f0fdf4] ">
+        <div class="h-fit flex  justify-end border-b p-2 space-x-4">
+            <button  class="bg-blue-400 text-white rounded-md p-1 pl-2 pr-2" type="button" (click)="fetchdata(1)" >Items details</button>
+            <button  class="bg-blue-400 text-white rounded-md p-1 pl-2 pr-2" type="button" (click)="fetchdata(2)" >Payment details</button>
+            <button  class="bg-blue-400 text-white rounded-md p-1 pl-2 pr-2" type="button" (click)="fetchdata(3)" >Add Items</button>
+        </div>
+        <div *ngIf="show==3" >
+
+        <div class="h-fit flex flex-col justify-evenly space-y-2 border-b p-2 pb-4">
+            <span class="pl-6 font-bold">Enter the required  details</span>
+
+            <div class="w-full flex justify-evenly items-center">
+                    <input class="input-field" type="text" placeholder="Content"  [(ngModel)]="content">    
+                    <input class="input-field" type="text" placeholder="Quantity" [(ngModel)]="quanity">    
+                    <input class="input-field" type="text" placeholder="Price"    [(ngModel)]="price">    
+                    <button type="button" class="add" (click)="additem()" >+</button>
+            </div>
+        </div>
+        <div class="flex  flex-col  w-full flex-grow ">
+                <tr class="flex pt-2 pb-2 border-b">
+                    <th class="w-1/5">S no</th>
+                    <th class="w-1/5">Item</th>
+                    <th class="w-1/5">Quantity</th>
+                    <th class="w-1/5">Price</th>
+                    <th class="w-1/5">edit</th>
+                </tr> 
+              
+           <div *ngFor="let item of itemlist , let i = index" class="w-full space-y-4 pt-2">
+                <tr class="flex  ">
+                    <th class="w-1/5">{{i+1}}</th>
+                    <th class="w-1/5">{{item.content}}</th>
+                    <th class="w-1/5">{{item.quanity}}</th>
+                    <th class="w-1/5">{{item.price}}</th>
+                    <button  class="w-1/5" (click)="detele(i)" type="button">detele</button>
+                </tr> 
+           </div>
+     
+        </div>
+        <div class="mt-4 border-t">
+         <button type="button" class="border-2 border-red-500 font-bold p-1 rounded-md text-red-500" (click)="addtable()">Add to table</button>
+     </div>
+        </div>
+
+        <div  *ngIf="show==1" class="w-full h-96 border-2 rounded-md bg-[#f0fdf4]" >
+            <app-reqtable [reqtable]="eventdata.Reqtable"></app-reqtable>
+        </div>
+
+        <div  *ngIf="show==2
+        " class="w-full h-96 border-2 rounded-md bg-[#f0fdf4]" >
+            <app-table [paymentable]="eventdata.billfile"></app-table>
+        </div>
+        
+    </div>
+ -->
+
+    
+
+</div>

@@ -1,0 +1,32 @@
+
+    <p-table
+     [value]="reqtable" 
+          
+            [tableStyle]="{ 'width': 'full-content'}" 
+            [scrollable]="true" 
+            scrollHeight="100%"
+    >
+        <ng-template pTemplate="header" >
+            <tr>
+
+                <th>S no</th>
+                <th>Content</th>
+                <th>Quantity</th>
+                <th>Price</th>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-product let i = index let-rowIndex="rowIndex">
+            <tr>
+                <td>{{rowIndex + 1}}</td>
+                <td>{{product.Item}}</td>
+                <td>{{product.Quantity}}</td>
+                <td ><p class="bg-yellow-500 text-white font-semibold rounded-md w-fit h-fit pl-1 pr-1">{{product.amount}}</p></td>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="summary" >
+            <div class="flex align-items-center justify-content-between bg-white">
+                In total there are {{reqtable ? reqtable.length : 0 }} Item.
+            </div>
+        </ng-template>
+    </p-table>
+

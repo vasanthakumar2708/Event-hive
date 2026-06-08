@@ -1,0 +1,25 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.visitbtn {
+    @apply w-fit h-fit rounded-md  bg-[#68D2E8] p-2  text-white hover:text-[#68D2E8] hover:border-[#68D2E8] hover:bg-white 
+    hover:border-2
+}
+
+.feedback {
+    @apply border-2 border-[#60b9ef] rounded-md w-full h-36 bg-[#b6e8f3]
+}
+
+.feedbackbtn{
+    @apply w-fit h-fit rounded-md  bg-[#68D2E8] p-1  text-white hover:text-[#68D2E8] hover:border-[#68D2E8] hover:bg-white 
+    hover:border-2
+}
+
+.downloadbtn{
+    @apply rounded-md border-2 border-red-500 p-1 text-red-500 bg-[#fbd2d2] font-semibold flex items-center 
+}
+
+div{
+    @apply border-[#caf1f9]
+}

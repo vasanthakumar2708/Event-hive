@@ -1,0 +1,41 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.greenborder {
+    @apply border-[#c8e2d3] border rounded-md
+}
+
+.callbtn {
+    @apply border-[#76B792] p-2 w-3/4 border-4 rounded-md text-[#76B792]
+}
+
+.billinput{
+    @apply border-[#86d293] border-2 bg-[#e7f6e9] rounded-md
+}
+
+
+
+  progress::-webkit-progress-bar {
+    @apply bg-blue-100;
+    @apply rounded-sm;
+  }
+  
+  progress::-webkit-progress-value {
+    @apply bg-blue-500;
+    @apply rounded-sm;
+  }
+
+
+
+  input{
+    @apply focus:outline-none focus:border-2 focus:border-green-600;
+}
+
+.input-field{
+  @apply text-[#76B792] border-[#86d293] border bg-[#e7f6e9] rounded-md  
+}
+
+.add{
+  @apply border-[#76B792] border-2 rounded-md text-xl  size-6 flex items-center justify-center p-2 text-[#76B792]
+}

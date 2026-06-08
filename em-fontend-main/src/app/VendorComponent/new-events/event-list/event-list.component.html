@@ -1,0 +1,20 @@
+<div class="w-64 h-28  rounded-md shadow-xl flex flex-col justify-evenly items-center bg-green-50">
+    <div class="w-full text-center font-semibold">{{event.event.name}}</div>
+    <div class="w-full flex flex-row justify-evenly items-center">
+        <div>
+            <div class="w-full ">Date : {{event.event.doe}}</div>
+            <div *ngIf="event.eventStatus == 'quatationPending'" class="w-full  rounded-md p-1 flex items-center justify-evenly space-x-2 bg-yellow-100 " ><img src="../../../../assets/vendor/pending.svg" class="size-6" srcset=""><span class="text-bold text-[#e1a939]">Event Pending</span></div>
+            <div *ngIf="event.eventStatus == 'quatationsubmitted'" class="w-full  rounded-md p-1 flex items-center justify-evenly space-x-2 bg-yellow-100 " ><img src="../../../../assets/vendor/pending.svg" class="size-6" srcset=""><span class="text-bold text-[#e1a939]">Event Pending</span></div>
+            <div *ngIf="event.eventStatus == 'quotationRejected'" class="w-full  rounded-md p-1 flex items-center justify-evenly space-x-2 bg-red-100 " ><img src="../../../../assets/vendor/wrong.svg" class="size-6" srcset=""><span class="text-bold text-red-700">Event Rejected</span></div>
+            <div *ngIf="event.eventStatus == 'quotationAccepted'" class="w-full  rounded-md p-1 flex items-center justify-evenly space-x-2 bg-green-100 " ><img src="../../../../assets/vendor/complete.svg" class="size-6" srcset=""><span class="text-bold text-green-700">Event Accecpted</span></div>
+        </div>
+        <button class="viewbtn" (click)="showEventDetails()"><img src="../../../assets/vendor/viewbtn.svg" alt="" srcset=""></button>
+    </div>
+
+</div>
+
+<p-dialog header="Quation showDetails" [modal]="true" [(visible)]="visibleEventDetails" [style]="{ width: '85rem' }">
+  <app-dialog [eventdata]="event"  [user]="user"></app-dialog>
+    
+     
+    </p-dialog>

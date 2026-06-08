@@ -1,0 +1,45 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.btn{
+    @apply border-2 pt-1 pb-1 pl-4 pr-4 rounded-full font-semibold hover:bg-[#b6e8f3];
+}
+
+.inputbox{
+    @apply bg-[#e2f1fe] rounded-md pl-5 border-2 border-[#b6e8f3];
+}
+
+input{
+    width: 210px;
+}
+
+.visible {
+    display: block; 
+  }
+  
+  .invisible {
+    display: none;
+  }
+
+  .p-inputtext{
+    background-color: #c5e3fc;
+  }
+
+  .error {
+    @apply  bg-red-100 rounded-md pl-5 border border-red-500;
+  }
+
+  .loader-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* dark overlay */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000; /* make sure it's on top of everything */
+    pointer-events: none; /* disable interactions with underlying content */
+  }

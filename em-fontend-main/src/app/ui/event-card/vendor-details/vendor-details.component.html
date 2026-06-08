@@ -1,0 +1,91 @@
+
+
+<div class="w-[28rem] h-1/4  flex flex-col p-2 border-b-2 space-y-2">
+    <!-- <div class="h-1  bg-black"></div> -->
+    <div class="w-full  flex items-center  space-x-5 flex-row">
+        <span class="flex items-center justify-center text-xl font-medium "><img src="../../../../assets/userprofile.svg" class="size-10 mr-2" alt=""> {{vendorDetails.vendorDetails.vendor_location}}</span>
+        <span class="h-8 flex items-center justify-center "><img src="../../../../assets/foodicon.svg" class="size-8 mr-2 p-2 rounded-full bg-[#f1f5f8]" alt="">{{vendorDetails.vendorDetails.vendor_service}}</span>
+    </div>
+    <div class="w-full  flex items-center">
+        <div class="flex flex-col space-y-2">
+        <span class="flex items-center justify-center rounded-full p-1 bg-[#f1f5f8] text-sm pr-2"><img src="../../../../assets/locationicon.svg" class="size-5 mr-2" alt=""> {{vendorDetails.vendorDetails.vendor_location}}</span>
+        <span class="flex items-center justify-center rounded-full p-1 bg-[#f1f5f8] text-sm pr-2" ><img src="../../../../assets/phoneicon.svg" class="size-5 mr-2" alt=""> {{vendorDetails.vendorDetails.vendor_contact}}</span>
+        </div>
+        <div class="flex justify-center flex-grow space-x-5">
+        <div class="flex  items-center justify-center h-fit " ><button class="visitbtn" (click)="test()">Visit Site</button></div>
+        <div class="flex  items-center justify-center h-fit"><button class="visitbtn">Call</button></div>
+        </div>
+    </div>
+</div>
+
+<div class="w-full h-3/4 overflow-y-scroll flex flex-col p-2 space-y-2">
+    <div class="w-full min-h-16 border-2 rounded-md flex items-center justify-center" >Quatation Finalised <img class="ml-2" src="../../../../assets/complete.svg" alt=""> </div>
+    <div class="w-full min-h-40 border-2 rounded-md flex flex-col" >
+
+        <div class="w-full h-10 border-b-2 font-semibold flex items-center justify-center"> Bill Details</div>
+        <div class="w-full flex flex-grow  flex-col space-y-2 p-2 ">
+            <span class="font-semibold p-2 pl-10">Total Amount :  {{vendorDetails.vendorEventDetails.billamount}} Rs</span>
+            <span class="font-semibold p-2 pl-10">Total Amount Paid:  {{vendorDetails.vendorEventDetails.billpaid}} Rs</span>
+              
+            
+                    <div class=" h-fit flex flex-col w-full border-2 rounded-md  bg-green-50 pl-8 p-4 items-center space-y-3">
+                        <span class="w-full flex justify-center ">Update Payment </span>
+                        <div class="w-full items-start">
+                        <label class="flex space-x-2 items-center justify-between w-1/3">
+                            <img class="size-5" src="../../../../../assets/payment/upi.svg" alt=""> UPI
+                            <input type="radio" name="pay" value="upi" [(ngModel)]="selectedOption" >
+                          </label>
+                          
+                          <label class="flex space-x-2 items-center justify-between w-1/3">
+                            <img class="size-5" src="../../../../../assets/payment/card.svg" alt="">Card
+                              <input type="radio" name="pay" value="card" [(ngModel)]="selectedOption" >
+                          </label>
+                          
+                          <label class="flex space-x-2 items-center justify-between w-1/3">
+                             <img class="size-5" src="../../../../../assets/payment/cash.svg" alt=""> Cash
+                              <input type="radio" name="pay" value="cash" [(ngModel)]="selectedOption" >
+                          </label>
+                        </div>
+                        <div class="w-full flex justify-start space-x-10"><label for="">Amount</label><input [(ngModel)]="paidamount" class="border bg-green-100 border-emerald-500 rounded-lg pl-1 " type="text" value=""></div>
+                       <button class="rounded-lg bg-green-600 w-3/4 text-white p-1 font-bold " (click)="billpaybtn()" >submit</button> 
+           
+        </div>
+
+    </div>
+
+</div>
+<!-- <div class="w-full h-3/4 overflow-y-scroll flex flex-col p-2 space-y-2">
+    <div class="w-full min-h-16 border-2 rounded-md flex items-center justify-center" > {{ vendorDetails.vendorEventDetails.status[0] ? 'ORDER ACCEPTED ' : 'ORDER PENDING ' }} <img class="ml-2" [src]="vendorDetails.vendorEventDetails.status[0]? '../../../../assets/complete.svg' : '../../../../assets/pending.svg'" alt=""> </div>
+    <div class="w-full min-fit border-2 rounded-md flex flex-col items-center justify-center p-4 space-y-2"> 
+       <span class="w-full flex  justify-center"> {{ vendorDetails.vendorEventDetails.status[1] ? 'REQUIREMENT GATHERED ' : 'REQUIREMENT NOT YET GATHERED ' }} <img class="ml-2" [src]="vendorDetails.vendorEventDetails.status[1] ? '../../../../assets/complete.svg' : '../../../../assets/pending.svg'" alt=""> </span>
+        <div *ngIf="vendorDetails.vendorEventDetails.status[1]" class="flex flex-col space-y-2"> 
+            <span>You can download the Requremnt and bill recipt here</span>
+            <div class="w-full flex justify-end pr-2"><button class="downloadbtn" (click)="download()"><img src="../../../../assets/download.svg" class="size-5" alt="">Download</button></div>
+        </div>
+    
+    
+    </div>
+        
+        
+        
+        
+    <div class="w-full h-fit flex-col border-2 rounded-md flex items-center justify-center p-5 bg-yellow-100 space-y-2">
+        <span class="flex items-center" > {{ vendorDetails.vendorEventDetails.status[2] ? 'FINALISED BILL  DEATILS ' : 'BILL AMOUNT NOT YET FINALISED' }} <img class="ml-2" [src]="vendorDetails.vendorEventDetails[0].status[2]? '../../../../assets/money2.svg' : '../../../../assets/pending.svg'" alt=""></span>
+        <div *ngIf="vendorDetails.vendorEventDetails.status[2] " class="h-fit w-[90%] flex flex-col space-y-2" >
+
+            <span class="flex">Total Bill : {{vendorDetails.vendorEventDetails.billamount}} <img src="../../../../assets/money.svg" class="size-5" alt=""></span>
+            <span class="flex">Adavnce Bill : {{vendorDetails.vendorEventDetails.billamount_advance}} <img src="../../../../assets/money.svg" class="size-5" alt=""></span>
+            <span class="flex">Paid Bill Amount : {{vendorDetails.vendorEventDetails.billpaid}} <img src="../../../../assets/money.svg" class="size-5" alt=""></span>
+        </div>        
+        </div>
+    <div class="w-full min-h-16 border-2 rounded-md flex items-center justify-center"> {{ vendorDetails.vendorEventDetails.status[3] ? 'ADAVANCE AMOUNT RECIVED ' : 'ADAVANCE AMOUNT PENDING' }} <img class="ml-2" [src]="vendorDetails.vendorEventDetails[0].status[3] ? '../../../../assets/complete.svg' : '../../../../assets/pending.svg'" alt=""> </div>
+    <div class="w-full min-h-16 border-2 rounded-md flex items-center justify-center"> {{ vendorDetails.vendorEventDetails.status[4] ? 'EVENT ORGANISED' : 'EVENT NOT START' }} <img class="ml-2" [src]="vendorDetails.vendorEventDetails[0].status[4]? '../../../../assets/complete.svg' : '../../../../assets/pending.svg'" alt=""> </div>
+    <div class="w-full h-fit border-2 rounded-md flex flex-col "> 
+    <span class="w-full text-center">FEEDBACK</span>
+    <div>
+        <div class="w-full pt-2 pl-2 pr-2"><textarea name="" id="" class="feedback"></textarea></div>
+        <div class="w-full p-2 flex justify-end"><button type="button" class="feedbackbtn" (click)="submit()">Submit</button></div>
+    </div>    
+    </div>
+    <div class="w-full min-h-16 border-2 rounded-md flex items-center justify-center"> {{ vendorDetails.vendorEventDetails[0].status[6] ? 'ALL AMOUNT RECIVED ' : 'REMAINING AMOUNT PENDING' }} <img class="ml-2" [src]="vendorDetails.vendorEventDetails[0].status[6]? '../../../../assets/complete.svg' : '../../../../assets/pending.svg'" alt=""> </div>
+</div> -->

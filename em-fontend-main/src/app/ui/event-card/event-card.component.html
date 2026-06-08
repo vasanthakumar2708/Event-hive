@@ -1,0 +1,139 @@
+<div class="detail w-full h-8 bg-[#b6e8f3] space-x-2 flex items-center justify-center border-2 rounded-md">
+    <span class="labelinfo">{{tempevent.name}}</span>
+    <span>|</span>
+    <span class="labelinfo">{{tempevent.doe}}</span>
+    <span>|</span>
+    <span class="labelinfo">{{tempevent.LocOfEvent}}</span>
+</div>
+
+
+
+<div  *ngIf="event.userEventStatus == 'quatationPending'">
+<div  class=" flex flex-row space-x-4 mt-4">
+ 
+    <div class="main flex flex-grow flex-col h-full border-2 rounded-md  w-[70%] ">
+        <span class="text-xl font-bold w-full text-center border-b-2 h-fit p-2 border-blue-100">Quatation List</span>
+        <p-table 
+        [value]="venList" 
+        styleClass="p-datatable-striped" 
+        [tableStyle]="{ 'width': 'full-content'}" 
+        [scrollable]="true" 
+        scrollHeight="100%"
+    >
+        <ng-template pTemplate="header">
+            <tr>
+                <th>S No</th>
+                <th>Status</th>
+                <th>View</th>
+                <th>Vendor Name</th>
+                <th>Quatation</th>
+                <th>Confirm</th>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-ven let-rowIndex="rowIndex">
+            <tr>
+                <td>{{ rowIndex + 1 }}</td>
+                <td *ngIf="ven.vendorEventDetails[0].eventStatus == 'quatationsubmitted' " ><button class="rounded-md text-green-900 bg-green-400 pl-2 pr-2 font-bold ">COMPLETED</button></td>
+                <td *ngIf="ven.vendorEventDetails[0].eventStatus == 'quatationPending' "  ><button class="rounded-md text-red-900 bg-red-400 pl-2 pr-2 font-bold">PENDING</button></td>
+
+                <td><button type="button" class="rounded-md text-green-900 bg-green-400 pl-2 pr-2 font-bold " (click)="viewtable(rowIndex)">view</button></td>
+                
+                <td>{{ ven.vendorDetails.vendor_cname }}</td>
+                <td>{{"Rs . " + ven.vendorEventDetails[0].billamount }}</td>
+                <td>
+                    <button type="button" (click)="finalisevendor(rowIndex)" class="rounded-md  flex border-green-500 border-2 p-1 space-x-2 justify-center items-center text-green-500">
+                        <img src="../../../assets/complete.svg" alt="" srcset="" *ngIf="ven.vendorDetails._id == finaliseFoodvendor || ven.vendorDetails._id == finaliseVenuevendor||ven.vendorDetails._id == finaliseEntertainvendor || ven.vendorDetails._id == finaliseDecorvendor">confirm 
+                    </button>
+                </td>
+                </tr>
+        </ng-template>
+    </p-table>
+
+
+    </div>
+   
+
+
+
+  
+
+   
+   <div class="main flex flex-grow flex-col h-full border-2 rounded-md  w-[30%]">
+    <span class="text-xl font-bold w-full text-center border-b-2 h-fit p-2 border-blue-100">Requirement Table</span>
+
+   <p-table 
+   [value]="viewReqtable" 
+   styleClass="p-datatable-striped" 
+   [tableStyle]="{ 'width': 'full-content'}" 
+   [scrollable]="true" 
+   scrollHeight="100%"
+>
+   <ng-template pTemplate="header">
+       <tr>
+           <th>S No</th>
+           <th>item Name</th>
+           <th>amount</th>
+       </tr>
+   </ng-template>
+   <ng-template pTemplate="body" let-item let-rowIndex="rowIndex">
+       <tr>
+           <td>{{ rowIndex + 1 }}</td>
+           <td>{{ item.Item }}</td>
+           <td>{{ item.amount }}</td>
+           </tr>
+   </ng-template>
+</p-table>
+
+
+</div>
+</div>
+<div class="w-full h-fit flex items-end justify-end mt-2 "><button (click)="finalisevendorList()" class="bg-green-400 text-green-900 rounded-md font-bold size-fit pl-2 pr-2 text-xl p-1">Finalise Quatation</button></div>
+</div>
+
+
+<div *ngIf="this.event.userEventStatus == 'quatationsubmitted'" class="w-full h-full flex flex-row">
+
+    <div class="main flex flex-grow h-full border-2 rounded-md justify-center w-1/2 m-2">
+        <app-vendor-details [vendorDetails]="vendetails"></app-vendor-details>
+   </div>
+
+   <div class="flex flex-col space-y-4 main  flex-grow h-full border-2 rounded-md  w-1/2 m-2">
+
+
+    <div class="w-full h-20 border-b-2 border-blue-100 flex justify-evenly items-center "> 
+        <button (click)="viewVendordetials('Food')">  Food </button>      
+        <button (click)="viewVendordetials('Venue')">  Venue </button>      
+        <button (click)="viewVendordetials('Entertainment')">  Entertainment </button>      
+        <button (click)="viewVendordetials('Decor')">  Decor </button>      
+    </div>
+
+    <div>
+        <p-table 
+        [value]="viewReqtable"
+        styleClass="p-datatable-striped" 
+        [tableStyle]="{ 'width': 'full-content'}" 
+        [scrollable]="true" 
+        scrollHeight="100%"
+     >
+        <ng-template pTemplate="header">
+            <tr>
+                <th>S No</th>
+                <th>item Name</th>
+                <th>Quantity</th>
+                <th>amount</th>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-item let-rowIndex="rowIndex">
+            <tr>
+                <td>{{ rowIndex + 1 }}</td>
+                <td>{{ item.Item }}</td>
+                <td>{{ item.Quantity }}</td>
+                <td> <span class="bg-green-400 text-green-900 font-bold rounded-md p-1">{{ item.amount }}</span></td>
+                </tr>
+        </ng-template>
+     </p-table>
+    </div>
+
+</div> 
+</div>
+  

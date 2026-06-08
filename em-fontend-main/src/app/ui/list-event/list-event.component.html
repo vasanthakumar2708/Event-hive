@@ -1,0 +1,13 @@
+<div class="w-fit h-16 flex items-center justify-evenly  space-x-4 " >
+    <button class="venbtn" (click)="vendetails()">{{vendorName}}</button>
+   
+    
+    <div *ngFor="let status of vendorDetails.vendorEventDetails.status" class="list">
+        <img
+        [src]=" status ? '../../../assets/complete.svg' : '../../../assets/pending.svg'"
+        alt=""
+      />
+    </div>
+  
+
+</div>

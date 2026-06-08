@@ -1,0 +1,25 @@
+<div class="card  h-64 flex ">
+    <div class="w-1/2 flex items-center justify-center">
+        <div><img src="../../../assets/newuser.svg" alt="" class="size-72"></div>
+    </div>
+    <div class="w-1/2  space-y-6">
+        <span class="p-text-secondary block mb-5">Enter your details</span>
+        <div class="flex justify-between gap-3 mb-3">
+            <label for="username" class="font-semibold ">Username</label>
+            <input   id="username" class="flex-auto inputbox " autocomplete="off" [(ngModel)]="name" />
+        </div>
+        <div class="flex justify-between gap-3 mb-5">
+            <label for="email" class="font-semibold ">Email</label>
+          <div><input   id="email" class="flex-auto inputbox" autocomplete="off" [(ngModel)]="email"/></div>  
+        </div>
+        <div class="flex justify-between gap-3 mb-5">
+            <label for="email" class="font-semibold ">Phone No</label>
+            <input   id="email" class="flex-auto inputbox" autocomplete="off" [(ngModel)]="phone_no"/>
+        </div>
+        <div class="flex justify-between gap-2">
+            <button  class="btn" (click)="visible = false" >Cancel</button>
+            <button  class="btn " (click)="submit()" >Create</button>
+        </div>
+    </div>
+
+</div>

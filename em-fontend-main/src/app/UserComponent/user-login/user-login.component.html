@@ -1,0 +1,40 @@
+<div class="loader-overlay" *ngIf="loading">
+  <div class="absolute top-[35%] left-[45%] w-fit h-hit">
+    <img src="../../../assets/landing/loading.svg" class="size-36" alt="" srcset="">
+  </div>
+</div>
+
+
+
+<div class="card h-64 flex">
+    <div class="w-1/2 flex items-center justify-center">
+      <div><img src="../../../assets/newuser.svg" alt="" class="size-72"></div>
+    </div>
+    
+    <!-- First Div for initial state -->
+    <div class="w-1/2 space-y-6" >
+      <span class="p-text-secondary block mb-5 font-semibold">Enter your Phone Number</span>
+      <div class="flex  items-center justify-center text-center border-2 border-l-8 border-blue-600 bg-[#c5e3fc] space-x-3">
+        <div class="size-8"  >
+          <img src="../../../assets/info.svg" alt="" srcset="" >
+        </div>
+        <div class="w-3/4">Password is set to To your phone number</div>
+      </div>
+      <div  class="flex justify-between gap-3 mb-5">
+        <label for="phone_no" class="font-semibold">Phone No</label>
+        <input  [ngClass]="{'inputbox': !usererror, 'error': usererror}" class="flex-auto " autocomplete="off" [(ngModel)]="phone_no" />
+      </div>
+      <div class="flex justify-between gap-3 mb-5">
+        <label for="phone_no" class="font-semibold">Password</label>
+        <input [ngClass]="{'inputbox':!passworderror, 'error': passworderror}"  class="flex-auto " autocomplete="off" [(ngModel)]="password" />
+      </div>
+      <span *ngIf="usererror" class="text-red-400 text-sm">*Username not found</span>
+      <span *ngIf="passworderror" class="text-red-400 text-sm">*Password is incorrect</span>
+      <div class="flex justify-between gap-2">
+        <button class="btn" (click)="cancel()">Cancel</button>
+        <button class="btn" (click)="submit()">Login</button>
+      </div>
+    </div>
+  
+    
+  

@@ -1,0 +1,29 @@
+<div class="card bg-[#f0fdf4]">
+    <p-table [value]="paymentable" [tableStyle]="{'width': 'full-content'}">
+        <ng-template pTemplate="header" >
+            <tr>
+                <th>date</th>
+                <th>payment type</th>
+                <th>Price</th>
+                <th>status</th>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-product let-rowIndex="rowIndex">
+            <tr>
+                <td>{{product.date}}</td>
+                <td>{{product.bill}}</td>
+                <td ><p class="bg-yellow-500 text-white font-semibold rounded-md w-fit h-fit pl-1 pr-1">{{product.mode_of_payment}}</p></td>
+                <td *ngIf="product.status == 'pending'" class="flex flex-row space-x-2">
+                    <button (click)="updatedata('appect',rowIndex)" class="font-bold rounded-md bg-green-300 text-green-700 p-1 pl-2 pr-2">accept</button>
+                    <button (click)="updatedata('reject',rowIndex)" class="font-bold rounded-md bg-red-300 text-red-700 p-1 pl-2 pr-2">rejected</button>
+                </td>
+                <td *ngIf="product.status == 'complete' " ><p class="size-fit font-bold rounded-md border-2 border-green-300 text-green-700 p-1 pl-2 pr-2">approved</p> </td>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="summary">
+            <div class="flex align-items-center justify-content-between bg-white">
+                In total there are {{paymentable ? paymentable.length : 0 }} transactions.
+            </div>
+        </ng-template>
+    </p-table>
+</div>

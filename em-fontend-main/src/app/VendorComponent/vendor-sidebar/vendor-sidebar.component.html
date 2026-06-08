@@ -1,0 +1,10 @@
+<div class="h-full w-60 p-4 ">
+<div class=" h-full bg-[#ffffff] flex flex-col items-center justify-between pt-10 space-y-8 rounded-md">
+    <div class = "  space-y-8 flex flex-col w-full">
+    <div *ngFor="let menu of menus" class="w-full  flex justify-center">
+        <div class="w-[80%]"><button class="btn" [routerLink]="menu.routerLink"> {{menu.label}} </button></div>    
+    </div>
+<!-- </div>
+    <img  class="rounded-b-md " src="../../../assets/vendor/img.svg" alt="">
+</div> -->
+</div>

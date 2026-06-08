@@ -1,0 +1,25 @@
+/* You can add global styles to this file, and also import other style files */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.home{
+    z-index: 10;
+}
+
+@media (max-width: 480px) {
+    .para{
+        height: 10rem;
+        display: inline-block;
+    }
+  }
+
+  div {
+    font-family: "Poppins", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+}
+
+.startbtn{
+    @apply hover:bg-[#73EC8B] hover:text-white h-12 w-52 bg-white text-xl font-bold rounded-full shadow-lg 
+}

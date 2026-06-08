@@ -1,0 +1,14 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+.btn {
+    @apply w-fit  bg-[#68d2e8] h-10 rounded-md  items-center justify-start pl-5 pr-5 flex font-semibold text-white
+    hover:bg-white hover:text-[#68d2e8] hover:border-2 hover:border-[#68d2e8]
+    active:bg-white active:text-[#68d2e8] active:border-2 active:border-[#68d2e8];
+  }
+  
+  .inputbox{
+    @apply bg-[#b6e8f3] rounded-md border-[#60b9ef] border-2 pl-2 text-[#276a94] w-64
+}

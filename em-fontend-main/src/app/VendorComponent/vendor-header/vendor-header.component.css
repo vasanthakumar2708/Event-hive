@@ -1,0 +1,12 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.btn {
+  @apply flex items-center justify-center border border-[#86d293] rounded-md  text-[#86d293] 
+  hover:bg-[#86d293] hover:text-white ;
+  font-size: 12px;
+}
+
+
+

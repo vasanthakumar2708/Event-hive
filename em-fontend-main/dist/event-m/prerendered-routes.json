@@ -1,0 +1,11 @@
+{
+  "routes": [
+    "/main",
+    "/user",
+    "/user/addevents",
+    "/user/events",
+    "/vendor",
+    "/vendor/events",
+    "/vendor/newevents"
+  ]
+}

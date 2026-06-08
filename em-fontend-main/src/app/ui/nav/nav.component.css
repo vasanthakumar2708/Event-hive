@@ -1,0 +1,23 @@
+.backblur{
+  @apply backdrop-blur-sm 
+}
+
+.nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 100;
+}
+
+.nav-visible {
+  opacity: 1;
+  transition: opacity 0.5s;
+}
+
+.nav-hidden {
+  opacity: 0;
+  transition: opacity 0.5s;
+}
+
+

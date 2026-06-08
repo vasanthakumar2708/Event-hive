@@ -1,0 +1,8 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.viewbtn {
+    @apply size-10 bg-[#b6e8f3] border-2 rounded-md border-[#60b9ef] flex justify-center items-center
+
+}

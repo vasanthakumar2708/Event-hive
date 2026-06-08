@@ -1,0 +1,58 @@
+<div class="w-full h-full flex flex-row justify-between p-5">
+    
+    <div class=" h-full flex flex-grow mr-5 text-[#9ca3af] flex-col space-y-7 p-10">
+        <span class="font-semibold text-xl">Enter basic details for new event</span>
+
+        <div class="info ">
+         please enter your pincode number to find the near by vendors.
+        </div>
+
+        <div class="flex  justify-between">
+        <label for="" class="font-semibold " >Pincode </label>
+       <div class="flex space-x-2">
+           <input type="text" class="pincodeInput" [(ngModel)]="pincode">
+           <button class="findbtn" (click)="getVendordetails()" ><img src='../../../assets/find.svg' alt=""></button>
+        </div>
+       </div>
+
+       <div class="flex  justify-between">
+        <label for="" class="font-semibold">Requirement</label>
+        <button class="bg-blue-300 text-white rounded-md p-1 pl-3 pr-3" (click)="requirement()">fill requirement</button>
+       </div>
+
+
+        <div class="flex  justify-between">
+        <label for="" class="font-semibold">Name</label>
+        <input type="text" class="inputbox" [(ngModel)]="name">
+       </div>
+
+      
+       <div class="flex  justify-between">
+        <label for="" class="font-semibold">Phone no</label>
+        <input type="text" class="inputbox" [(ngModel)]="phone">
+       </div>
+
+       <div class="flex  justify-between">
+        <label for="" class="font-semibold">Event type</label>
+        <input type="text" class="inputbox" [(ngModel)]="eventType">
+       </div>
+   
+       <div class="flex  justify-between">
+        <label for="" class="font-semibold">Date of Event</label>
+        <input type="text" class="inputbox" [(ngModel)]="doe">
+       </div>
+
+       <div class="flex  justify-between">
+        <label for="" class="font-semibold">Location of Events</label>
+        <input type="text" class="inputbox" [(ngModel)]="lOfEvent">
+       </div>
+       
+       <div class="w-full flex justify-center"><button class="btn" (click)="onSubmit()" >Submit</button></div>
+    </div> 
+    <div class="w-fit"><app-stepper-form (stepperEmitter)="onVendorNamesReceived($event)"></app-stepper-form></div> 
+</div>
+
+
+<p-dialog header="Fill your requirement" [modal]="true" [(visible)]="dialog" [style]="{ width: '50rem' }">
+    <app-requirement (messageEvent)="receiveMessage($event)"></app-requirement>
+</p-dialog>

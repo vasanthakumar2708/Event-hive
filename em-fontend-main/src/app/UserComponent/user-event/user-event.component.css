@@ -1,0 +1,7 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.userdata {
+    @apply flex items-center justify-center border-[#60b9ef] border rounded-md p-1
+}
