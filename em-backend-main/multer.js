@@ -9,7 +9,7 @@ if (!fs.existsSync(uploadDir)) {
     fs.mkdirSync(uploadDir, { recursive: true }); // Create uploads directory if it doesn't exist
 }
 
-// Multer storage configuration
+// Multer storage configurationo
 const storage = multer.diskStorage({
     destination: function (req, file, cb) {
         
