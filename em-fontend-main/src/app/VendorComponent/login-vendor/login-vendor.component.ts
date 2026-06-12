@@ -29,8 +29,8 @@ loading: boolean  = false;
 
   submit() {
   const data = {
-    vendor_phone_no: this.phone_no,
-    vendor_password: this.password
+    phone_no: this.phone_no,
+    password: this.password
   };
 
   this.api.loginVendor(data).subscribe({
