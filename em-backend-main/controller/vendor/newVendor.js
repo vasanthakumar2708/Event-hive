@@ -4,6 +4,7 @@ const VendorDetails =require('../../Model/vendorDetails')
 const newVedor = async (req,res) => {
     
     try {
+         console.log("REQUEST BODY:", req.body);
         const newven = new VendorDetails({
             
             vendor_service:req.body.name,
